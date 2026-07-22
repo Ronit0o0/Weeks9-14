@@ -9,7 +9,7 @@ public class GrowSprite : MonoBehaviour
     public float growthDuration;
     private float growthProgress = 0f;
     public Button startButton;
-
+    public bool TurnIsOver = false;
     bool hasCoroutineStarted;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,7 +24,7 @@ public class GrowSprite : MonoBehaviour
 
     }
 
-    private IEnumerator SpriteGrower()
+    public IEnumerator SpriteGrower()
     {
         startButton.interactable = false;
 
@@ -36,11 +36,13 @@ public class GrowSprite : MonoBehaviour
 
             yield return null;
         }
+        TurnIsOver = true;
         startButton.interactable = true;
     }
 
     public void StartGrowth()
     {
+        TurnIsOver = false;
         StartCoroutine(SpriteGrower());
         
     }
