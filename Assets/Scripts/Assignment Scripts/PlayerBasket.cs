@@ -4,12 +4,12 @@ using UnityEngine.InputSystem;
 public class PlayerBasket : MonoBehaviour
 {
     //The speed at which the player will move at
-    public float speed = 5f;
+    public float speed = 5;
     //This is a public variable of the players x and y vectors and moves with player input only 
     private Vector2 playerMovement = Vector2.zero;
     //These variables are for the dash 
-    private float dashSpeed = 8f;
-    private float dashDuration = 0.5f;
+    private float dashSpeed = 8;
+    private float dashDuration = 0.5;
     private bool isDashing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,11 +31,11 @@ public class PlayerBasket : MonoBehaviour
         //This will make it so the player wont move past the threshold and will just stay at the Max x position for either left or rightof the screen
         if(transform.position.x < -4)
         {
-            transform.position = new Vector3(-4f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(-4, transform.position.y, transform.position.z);
         }
-        else if(transform.position.x > 4f)
+        else if(transform.position.x > 4)
         {
-            transform.position = new Vector3(4f, transform.position.y, transform.position.z);
+            transform.position = new Vector3(4, transform.position.y, transform.position.z);
         }
     
     }
@@ -65,7 +65,7 @@ public class PlayerBasket : MonoBehaviour
 
         yield return new WaitForSeconds(dashDuration);
 
-        speed = 5f;
+        speed = 5;
 
         isDashing = false;
     }
