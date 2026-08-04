@@ -390,6 +390,7 @@ MonoBehaviour:
   - {fileID: 3243628821152715418, guid: 6bc95059fc0578647858569efd1756fc, type: 3}
   - {fileID: 5412672153931282244, guid: c7798e14a95e9f84a92d156f38012bcc, type: 3}
   timer: 30
+  dropSpeed: 5
 --- !u!212 &690301403
 SpriteRenderer:
   serializedVersion: 2
