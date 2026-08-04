@@ -9,7 +9,7 @@ public class PlayerBasket : MonoBehaviour
     private Vector2 playerMovement = Vector2.zero;
     //These variables are for the dash 
     private float dashSpeed = 8;
-    private float dashDuration = 0.5;
+    private float dashDuration = 0.5f;
     private bool isDashing = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
