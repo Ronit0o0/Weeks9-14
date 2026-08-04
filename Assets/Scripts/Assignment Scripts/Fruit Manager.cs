@@ -6,6 +6,7 @@ public class FruitManager : MonoBehaviour
 {
     public List<GameObject> fruitsPrefabs;
     public float timer = 30f;
+    public float dropSpeed = -5;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -15,7 +16,7 @@ public class FruitManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+            fruitsPrefabs.Count.transform.position += Vector3.up * dropSpeed * Time.deltaTime;
     }
     // This coroutine will spawn the fruits infinitly until the timer is 0
     IEnumerator fruitSpawner()
@@ -24,7 +25,9 @@ public class FruitManager : MonoBehaviour
         while(timer > 0)
         {
             Instantiate(fruitsPrefabs[Random.Range(0, fruitsPrefabs.Count)],new Vector3(Random.Range(-4, 4), 5, 0), Quaternion.identity);
+
+            yield return new WaitForSeconds(5);
         }
-        yield return null;
+        
     }
 }
