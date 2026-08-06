@@ -391,6 +391,7 @@ MonoBehaviour:
   - {fileID: 4690256217690375008, guid: 2a86c177224e3a9438a72940ca7dd9e6, type: 3}
   timer: 30
   dropSpeed: 5
+  playerBasketSpriteRenderer: {fileID: 231530410}
 --- !u!212 &690301403
 SpriteRenderer:
   serializedVersion: 2

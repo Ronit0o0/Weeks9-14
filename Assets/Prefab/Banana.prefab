@@ -104,4 +104,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 108bad1b1828840408f2fe90141b4660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FruitMover
-  speed: 2
+  speed: 8

@@ -13,8 +13,9 @@ public class FruitMover : MonoBehaviour
     void Update()
     {
         //This will have the fruits move down when spawned
-        transform.position -= Vector3.up * Time.deltaTime;
+        transform.position -= Vector3.up * speed * Time.deltaTime;
 
         Destroy(gameObject, 5f);
+
     }
 }
