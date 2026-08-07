@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7155328351147678252}
   - component: {fileID: 8468481435408826540}
-  - component: {fileID: -7953804720024193939}
   m_Layer: 0
   m_Name: Watermelon
   m_TagString: Untagged
@@ -92,16 +91,3 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-7953804720024193939
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4690256217690375008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 108bad1b1828840408f2fe90141b4660, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::FruitMover
-  speed: 8
