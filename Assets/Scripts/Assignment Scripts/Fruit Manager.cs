@@ -2,15 +2,18 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.Contracts;
-
+using TMPro;
 
 public class FruitManager : MonoBehaviour
 {
     public List<GameObject> fruitsPrefabs;
-    public float timer = 30f;
+    public float timer = 30;
     public SpriteRenderer playerBasketSpriteRenderer;
     public List<GameObject> spawnedFruits;
     public float speed = 5f;
+    public bool isCaught = false;
+    public TMP_Text timerText;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +25,9 @@ public class FruitManager : MonoBehaviour
     {
         //This will have the timer count down
         timer -= Time.deltaTime;
+
+        //This will show the timer counting down up to 1 decimal point
+        timerText.text = "Timer: " + timer.ToString("F1");
 
         //I need this for loop to have all the new and old fruits spawned moving down the screen or else the old fruits will get stuck and just stay there until the player catches a falling fruit
         for (int i = 0; i < spawnedFruits.Count; i++)
@@ -36,14 +42,21 @@ public class FruitManager : MonoBehaviour
             //This justchecks if the IF statement was working
             Debug.Log("Fruit Collected!");
 
+            //This bool will be able to have the points script track the fruit has been caught and then adding a point to the score
+            isCaught = true;
+
             //This destroys the fruit when the player catches it
             Destroy(spawnedFruits[i]);
 
             //This removes the spawned fruit from the list as well to remove the error about getting a null reference
             spawnedFruits.Remove(spawnedFruits[i]);
 
+        //This will check of the position of the spawned fruits is near the bounds to destroy the fruit and then it will destroy and remove the fruit form the list
         } else if (spawnedFruits[i].transform.position.y <= -5f)
         {
+            //If the fruit isnt caught then just keep the bool false
+            isCaught = false;
+
             //This destroys the fruit when the player catches it
             Destroy(spawnedFruits[i]);
 
