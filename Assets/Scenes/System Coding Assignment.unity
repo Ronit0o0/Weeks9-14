@@ -281,6 +281,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBasket
   speed: 5
+  timerGoalSlow: 2
+  timer: 0
 --- !u!212 &231530410
 SpriteRenderer:
   serializedVersion: 2
@@ -366,6 +368,7 @@ GameObject:
   - component: {fileID: 591786807}
   - component: {fileID: 591786809}
   - component: {fileID: 591786808}
+  - component: {fileID: 591786810}
   m_Layer: 5
   m_Name: Score
   m_TagString: Untagged
@@ -387,9 +390,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1941330483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -479, y: 254}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 115, y: -36}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &591786808
@@ -492,6 +495,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 591786806}
   m_CullTransparentMesh: 1
+--- !u!114 &591786810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 591786806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96667ee2fcc72e247822dda92fee69ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScoreSystem
+  fruitManager: {fileID: 690301402}
+  score: 0
+  scoreText: {fileID: 591786808}
 --- !u!1 &690301401
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,12 +544,30 @@ MonoBehaviour:
   - {fileID: 3400835006591617473, guid: 506e43777c9ff45418047dd98e500fa0, type: 3}
   - {fileID: 3243628821152715418, guid: 6bc95059fc0578647858569efd1756fc, type: 3}
   - {fileID: 4690256217690375008, guid: 2a86c177224e3a9438a72940ca7dd9e6, type: 3}
+  - {fileID: 4216222775236389137, guid: afa8570739c112c4d83dc7dca7e4e5e1, type: 3}
   timer: 30
   playerBasketSpriteRenderer: {fileID: 231530410}
-  spawnedFruits:
-  - {fileID: 3400835006591617473, guid: 506e43777c9ff45418047dd98e500fa0, type: 3}
+  spawnedFruits: []
   speed: 5
   isCaught: 0
+  timerText: {fileID: 1442998751}
+  rottenFruit: {fileID: 4216222775236389137, guid: afa8570739c112c4d83dc7dca7e4e5e1, type: 3}
+  caughtRottenFruitbool: 0
+  caughtRottenFruit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 231530409}
+        m_TargetAssemblyTypeName: PlayerBasket, Assembly-CSharp
+        m_MethodName: OnSlow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!212 &690301403
 SpriteRenderer:
   serializedVersion: 2
@@ -717,9 +753,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1941330483}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 441, y: 254}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -153, y: -36}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1442998751

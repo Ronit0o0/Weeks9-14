@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics.Contracts;
 using TMPro;
+using UnityEngine.Events;
 
 public class FruitManager : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class FruitManager : MonoBehaviour
     public float speed = 5f;
     public bool isCaught = false;
     public TMP_Text timerText;
+    public GameObject rottenFruit;
+    public bool caughtRottenFruitbool = false;
+    public UnityEvent caughtRottenFruit;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -23,11 +27,24 @@ public class FruitManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         //This will have the timer count down
         timer -= Time.deltaTime;
 
         //This will show the timer counting down up to 1 decimal point
         timerText.text = "Timer: " + timer.ToString("F1");
+
+        if(timer == 0f)
+        {
+            timer = 0;
+        }
+
+       if (playerBasketSpriteRenderer.bounds.Contains(rottenFruit.transform.position) && !caughtRottenFruitbool)
+        {   
+            Debug.Log("Player had been slowed");
+            caughtRottenFruitbool = true;
+            caughtRottenFruit.Invoke();
+        }
 
         //I need this for loop to have all the new and old fruits spawned moving down the screen or else the old fruits will get stuck and just stay there until the player catches a falling fruit
         for (int i = 0; i < spawnedFruits.Count; i++)
@@ -51,6 +68,7 @@ public class FruitManager : MonoBehaviour
             //This removes the spawned fruit from the list as well to remove the error about getting a null reference
             spawnedFruits.Remove(spawnedFruits[i]);
 
+
         //This will check of the position of the spawned fruits is near the bounds to destroy the fruit and then it will destroy and remove the fruit form the list
         } else if (spawnedFruits[i].transform.position.y <= -5f)
         {
@@ -62,6 +80,7 @@ public class FruitManager : MonoBehaviour
 
             //This removes the spawned fruit from the list as well to remove the error about getting a null reference
             spawnedFruits.Remove(spawnedFruits[i]);
+            
         }
         }
 

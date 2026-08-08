@@ -11,6 +11,8 @@ public class PlayerBasket : MonoBehaviour
     private float dashSpeed = 8;
     private float dashDuration = 0.5f;
     private bool isDashing = false;
+    public float timerGoalSlow = 2f;
+    public float timer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -68,5 +70,10 @@ public class PlayerBasket : MonoBehaviour
         speed = 5;
 
         isDashing = false;
+    }
+
+     public void OnSlow()
+    { 
+        speed = 2.5f;              
     }
 }
