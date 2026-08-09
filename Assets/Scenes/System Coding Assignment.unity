@@ -283,6 +283,7 @@ MonoBehaviour:
   speed: 5
   timerGoalSlow: 2
   timer: 0
+  scoreSystem: {fileID: 591786810}
 --- !u!212 &231530410
 SpriteRenderer:
   serializedVersion: 2
@@ -544,7 +545,6 @@ MonoBehaviour:
   - {fileID: 3400835006591617473, guid: 506e43777c9ff45418047dd98e500fa0, type: 3}
   - {fileID: 3243628821152715418, guid: 6bc95059fc0578647858569efd1756fc, type: 3}
   - {fileID: 4690256217690375008, guid: 2a86c177224e3a9438a72940ca7dd9e6, type: 3}
-  - {fileID: 4216222775236389137, guid: afa8570739c112c4d83dc7dca7e4e5e1, type: 3}
   timer: 30
   playerBasketSpriteRenderer: {fileID: 231530410}
   spawnedFruits: []

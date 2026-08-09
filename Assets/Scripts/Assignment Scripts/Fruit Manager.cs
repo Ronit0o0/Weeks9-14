@@ -17,17 +17,21 @@ public class FruitManager : MonoBehaviour
     public GameObject rottenFruit;
     public bool caughtRottenFruitbool = false;
     public UnityEvent caughtRottenFruit;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //This will start both the coroutine to spawn the normal fruits and the rotten fruits
         StartCoroutine(fruitSpawner());
+        StartCoroutine(rottenFruitSpawner());
+
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
         //This will have the timer count down
         timer -= Time.deltaTime;
 
@@ -39,12 +43,7 @@ public class FruitManager : MonoBehaviour
             timer = 0;
         }
 
-       if (playerBasketSpriteRenderer.bounds.Contains(rottenFruit.transform.position) && !caughtRottenFruitbool)
-        {   
-            Debug.Log("Player had been slowed");
-            caughtRottenFruitbool = true;
-            caughtRottenFruit.Invoke();
-        }
+       
 
         //I need this for loop to have all the new and old fruits spawned moving down the screen or else the old fruits will get stuck and just stay there until the player catches a falling fruit
         for (int i = 0; i < spawnedFruits.Count; i++)
@@ -104,8 +103,58 @@ public class FruitManager : MonoBehaviour
             spawnedFruits.Add(spawnedFruit);
 
             //waits 2 seconds before spawning more fruits
-            yield return new WaitForSeconds(2);
+            yield return new WaitForSeconds(1);
         }
-        
+    }
+
+    //This is a coroutine only for the rotten fruit but same function as the list of fruits
+     IEnumerator rottenFruitSpawner()
+    {   
+        while(timer > 0)
+        {    
+            //I created a variable to store the instantiate to be able to track the fruits that were spawned and to add them to the list of spawned fruits to have the player catch them.
+            GameObject spawnedRottenFruit = Instantiate(rottenFruit,new Vector3(Random.Range(-4, 4), 6, 0), Quaternion.identity);
+
+            //This while loop is running all the statements and such that were outside of the coroutine inside to be able to have reference to the spawned rotten fruits
+             while (spawnedRottenFruit != null)
+            {
+                //This will move the spawned rotten fruit down the screen
+                spawnedRottenFruit.transform.position -= Vector3.up * speed * Time.deltaTime;
+
+                //this checks if the rotten fruit is caught by the player and then it will trigger the unity event and destroythe rotten fruit
+                if (playerBasketSpriteRenderer.bounds.Contains(spawnedRottenFruit.transform.position) && !caughtRottenFruitbool)
+                {   
+
+                Debug.Log("Player had been slowed");
+
+                caughtRottenFruitbool = true;
+                
+                //This will trigger the invoke event of slowing the player and losing 1 point for catching the rotten fruit
+                caughtRottenFruit.Invoke();
+
+                //This will destroy the rotten fruit after being caught
+                Destroy(spawnedRottenFruit);
+
+                //This will stop the nested while loop from looking at the one spawned rotten fruit
+                spawnedRottenFruit = null;
+
+                //This will make it so the UnityEvent is repeatable
+                caughtRottenFruitbool = false;
+
+                }
+
+                //Similar to the normal fruits it will destroy the rotten fruit after reaching the deadzone
+                else if(spawnedRottenFruit.transform.position.y <= -5f)
+                {
+                   Destroy(spawnedRottenFruit); 
+                }
+
+                yield return null;
+            }
+            //waits 2 seconds before spawning more fruits
+            yield return new WaitForSeconds(1);
+        }
+
+       
     }
 }

@@ -1,6 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using System.Collections.Generic;
+using System.Diagnostics.Contracts;
+using TMPro;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
+using System.Security.Cryptography.X509Certificates;
 public class PlayerBasket : MonoBehaviour
 {
     //The speed at which the player will move at
@@ -13,6 +18,7 @@ public class PlayerBasket : MonoBehaviour
     private bool isDashing = false;
     public float timerGoalSlow = 2f;
     public float timer;
+    public ScoreSystem scoreSystem;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -74,6 +80,18 @@ public class PlayerBasket : MonoBehaviour
 
      public void OnSlow()
     { 
-        speed = 2.5f;              
+           StartCoroutine(SlowPlayer());
+    }
+
+    IEnumerator SlowPlayer()
+    {
+        //This will set the player speed to 2
+        speed = 2f;
+
+        //Have the player slowed for 2 seconds
+        yield return new WaitForSeconds(2f);
+
+        //Then return the player speed to normal
+        speed = 5f;
     }
 }
