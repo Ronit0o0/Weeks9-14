@@ -8,11 +8,11 @@ public class ScoreSystem : MonoBehaviour
     public FruitManager fruitManager;
     public int score = 0;
     public TMP_Text scoreText;
-    
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -30,16 +30,7 @@ public class ScoreSystem : MonoBehaviour
             //This will make the bool false in order for the score to not go up by 1 everyframe
             fruitManager.isCaught = false;
         }
-
-        // if (fruitManager.caughtRottenFruit == true)
-        // {
-        //     caughtRottenFruit.Invoke();
-
-        //     score -= 1;
-
-        //     fruitManager.caughtRottenFruit = false;
-        // }   
     }
 
-    
+
 }

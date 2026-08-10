@@ -23,7 +23,7 @@ public class PlayerBasket : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -37,15 +37,15 @@ public class PlayerBasket : MonoBehaviour
 
         //This will be the boundries on how far the player can move to the left and right of the screen
         //This will make it so the player wont move past the threshold and will just stay at the Max x position for either left or rightof the screen
-        if(transform.position.x < -4)
+        if (transform.position.x < -4)
         {
             transform.position = new Vector3(-4, transform.position.y, transform.position.z);
         }
-        else if(transform.position.x > 4)
+        else if (transform.position.x > 4)
         {
             transform.position = new Vector3(4, transform.position.y, transform.position.z);
         }
-    
+
     }
     //This will read the input from the player and will allow them to move left and right
     public void OnMove(InputAction.CallbackContext context)
@@ -57,7 +57,7 @@ public class PlayerBasket : MonoBehaviour
     public void OnDash(InputAction.CallbackContext context)
     {
         //This checks the bool within the Coroutine to see if the player is dashing or not and if the input was pressed then to start the Coroutine
-        if(context.performed && !isDashing)
+        if (context.performed && !isDashing)
         {
             StartCoroutine(Dash());
         }
@@ -67,20 +67,27 @@ public class PlayerBasket : MonoBehaviour
     // Reference Video: https://www.youtube.com/watch?v=KQGo-Am1DaA
     IEnumerator Dash()
     {
+        //This will set the bool to true for the dashing to be tracked by if statement
         isDashing = true;
 
+        //Then set the speed to the dashing speed
         speed = dashSpeed;
 
+        //Wait a bit before returning to normal speed
         yield return new WaitForSeconds(dashDuration);
 
+        //Return Speed to original value
         speed = 5;
 
+        //Make dashing false to slow speed to normal
         isDashing = false;
     }
 
-     public void OnSlow()
-    { 
-           StartCoroutine(SlowPlayer());
+    public void OnSlow()
+    {
+        //When the function is called with unity events it will take 1 point away from the player and start coroutine to slow the player
+        scoreSystem.score -= 1;
+        StartCoroutine(SlowPlayer());
     }
 
     IEnumerator SlowPlayer()
